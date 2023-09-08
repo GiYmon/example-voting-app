@@ -5,8 +5,7 @@ name: 01 Basic Docker Build
 on:
   push:
     branches:
-      - main
-  pull_request:
+      - 'main'
 
 jobs:
   build-image:
@@ -22,6 +21,7 @@ jobs:
       - name: Docker build
         uses: docker/build-push-action@v4
         with:
-          context: vote
+          context: ./vote
+          file: ./vote/Dockerfile
           push: ${{ github.event_name != 'pull_request' }}
           tags: bretfisher/docker-ci-automation:latest,bretfisher/docker-ci-automation:01
